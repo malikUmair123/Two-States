@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+</head>
+<body>
+    <!-- top-area Start -->
+    <header class="top-area">
+        <div class="header-area">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+
+                <div class="container">
+
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="index.html">TWO STATES</a>
+                    </div><!--/.navbar-header-->
+                    <!-- End Header Navigation -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class=" smooth-menu active"></li>
+                            <li class="smooth-menu"><a href="#contact">Blog</a></li>
+                            
+                            @Html.Partial("_LoginPartial")
+
+                        </ul><!--/.nav -->
+                    </div><!-- /.navbar-collapse -->
+                </div><!--/.container-->
+            </nav><!--/nav-->
+            <!-- End Navigation -->
+        </div><!--/.header-area-->
+
+        <div class="clearfix"></div>
+
+    </header><!-- /.top-area-->
+    <!-- top-area End -->
+    <div>
+        @RenderBody()
+        <hr />
+        <!--footer-copyright start-->
+        <footer id="footer-copyright" class="footer-copyright">
+            <div class="container">
+                <div class="hm-footer-copyright text-center">
+                    <p>
+                        &copy; copyright Team3. design and developed by Coders With Love
+                    </p><!--/p-->
+                </div><!--/.text-center-->
+            </div><!--/.container-->
+
+            <div id="scroll-Top">
+                <div class="return-to-top">
+                    <i class="fa fa-angle-up " id="scroll-top"></i>
+                </div>
+
+            </div><!--/.scroll-Top-->
+
+        </footer><!--/.footer-copyright-->
+        <!--footer-copyright end-->
+        <!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+
+        <!--<script src="~/assets/js/jquery.js"></script> Ajax problem-->
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+        <!--bootstrap.min.js-->
+        <script src="~/assets/js/bootstrap.min.js"></script>
+
+        <!-- bootsnav js -->
+        <script src="~/assets/js/bootsnav.js"></script>
+
+        <!-- jquery.sticky.js -->
+        <script src="~/assets/js/jquery.sticky.js"></script>
+
+        <!-- for progress bar start-->
+        <!-- progressbar js -->
+        <script src="~/js/progressbar.js"></script>
+
+        <!-- appear js -->
+        <script src="~/assets/js/jquery.appear.js"></script>
+
+        <!-- for progress bar end -->
+        <!--owl.carousel.js-->
+        <script src="~/assets/js/owl.carousel.min.js"></script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
+        <!--Custom JS-->
+        <script src="~/assets/js/custom.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="700139b0ed2c47c4abc7a3a3e6f91263" Name="Diagram1">
+        <EntityTypeShape EntityType="TwoStates1Model.city" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Cost_Of_Living" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.country" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Event" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Food" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Language" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Population" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.state" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Tourism" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.Transport" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwoStates1Model.User_Details" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="TwoStates1Model.FK__Cost_Of_L__C_Cit__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Events__E_Cities__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Food__F_Cities__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Language__L_Citi__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Populatio__P_Cit__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Tourism__Tourism__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Transport__T_Cit__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Events__E_user__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Language__L_user__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="TwoStates1Model.FK__Tourism__T_user__2A4B4B5E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TwoStates1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TwoStates1.dbo.Category' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Category">
+          <Property Name="Category_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Category_Type" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cost_Of_Living">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Public_Transport" Type="bigint" />
+          <Property Name="Food" Type="bigint" />
+          <Property Name="Rent_Allowances" Type="bigint" />
+          <Property Name="C_Cities" Type="int" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sortname" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="phonecode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="E_ID" />
+          </Key>
+          <Property Name="E_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Event_Date" Type="date" />
+          <Property Name="E_Categorytype" Type="varchar" MaxLength="50" />
+          <Property Name="E_Cities" Type="int" />
+          <Property Name="E_user" Type="int" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="F_ID" />
+          </Key>
+          <Property Name="F_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeaFood" Type="bit" />
+          <Property Name="South_Indian_Food" Type="bit" />
+          <Property Name="North_Indian_Food" Type="bit" />
+          <Property Name="Multicuisine" Type="bit" />
+          <Property Name="F_Cities" Type="int" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="L_ID" />
+          </Key>
+          <Property Name="L_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language_Name" Type="varchar" MaxLength="50" />
+          <Property Name="L_Cities" Type="int" />
+          <Property Name="L_user" Type="int" />
+        </EntityType>
+        <EntityType Name="Population">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Population_value" Type="bigint" />
+          <Property Name="P_Cities" Type="int" />
+        </EntityType>
+        <EntityType Name="states">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tourism">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="T_Name" Type="varchar" MaxLength="50" />
+          <Property Name="T_Categorytype" Type="varchar" MaxLength="50" />
+          <Property Name="Tourism_Cities" Type="int" />
+          <Property Name="T_user" Type="int" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Metro_Services" Type="bit" />
+          <Property Name="Local_trains" Type="bit" />
+          <Property Name="Local_buses" Type="bit" />
+          <Property Name="Flights" Type="bit" />
+          <Property Name="Cab_Services" Type="bit" />
+          <Property Name="T_Cities" Type="int" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Phoneno" Type="bigint" />
+          <Property Name="Email" Type="varchar" MaxLength="360" />
+          <Property Name="Email_Verified" Type="bit" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Subscribe" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Cost_Of_L__C_Cit__1920BF5C">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Cost_Of_Living" Type="Self.Cost_Of_Living" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Cost_Of_Living">
+              <PropertyRef Name="C_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'TwoStates1.dbo.Category' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Events__E_Catego__36B12243" />-->
+        <Association Name="FK__Events__E_Cities__37A5467C">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="E_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__E_user__38996AB5">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="E_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Food__F_Cities__3B75D760">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="F_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Language__L_Citi__31EC6D26">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Language" Type="Self.Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Language">
+              <PropertyRef Name="L_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Language__L_user__32E0915F">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1" />
+          <End Role="Language" Type="Self.Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Language">
+              <PropertyRef Name="L_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Populatio__P_Cit__1DE57479">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Population" Type="Self.Population" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Population">
+              <PropertyRef Name="P_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'TwoStates1.dbo.Category' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Tourism__T_Categ__286302EC" />-->
+        <Association Name="FK__Tourism__T_user__2A4B4B5E">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1" />
+          <End Role="Tourism" Type="Self.Tourism" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Tourism">
+              <PropertyRef Name="T_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tourism__Tourism__29572725">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Tourism" Type="Self.Tourism" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Tourism">
+              <PropertyRef Name="Tourism_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transport__T_Cit__239E4DCF">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Transport">
+              <PropertyRef Name="T_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TwoStates1ModelStoreContainer">
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cost_Of_Living" EntityType="Self.Cost_Of_Living" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Population" EntityType="Self.Population" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tourism" EntityType="Self.Tourism" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cost_Of_L__C_Cit__1920BF5C" Association="Self.FK__Cost_Of_L__C_Cit__1920BF5C">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Cost_Of_Living" EntitySet="Cost_Of_Living" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__E_Cities__37A5467C" Association="Self.FK__Events__E_Cities__37A5467C">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__E_user__38996AB5" Association="Self.FK__Events__E_user__38996AB5">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Food__F_Cities__3B75D760" Association="Self.FK__Food__F_Cities__3B75D760">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Language__L_Citi__31EC6D26" Association="Self.FK__Language__L_Citi__31EC6D26">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Language" EntitySet="Language" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Language__L_user__32E0915F" Association="Self.FK__Language__L_user__32E0915F">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Language" EntitySet="Language" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Populatio__P_Cit__1DE57479" Association="Self.FK__Populatio__P_Cit__1DE57479">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Population" EntitySet="Population" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tourism__T_user__2A4B4B5E" Association="Self.FK__Tourism__T_user__2A4B4B5E">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Tourism" EntitySet="Tourism" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tourism__Tourism__29572725" Association="Self.FK__Tourism__Tourism__29572725">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Tourism" EntitySet="Tourism" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transport__T_Cit__239E4DCF" Association="Self.FK__Transport__T_Cit__239E4DCF">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Transport" EntitySet="Transport" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TwoStates1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cost_Of_Living" Relationship="Self.FK__Cost_Of_L__C_Cit__1920BF5C" FromRole="cities" ToRole="Cost_Of_Living" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__E_Cities__37A5467C" FromRole="cities" ToRole="Events" />
+          <NavigationProperty Name="Foods" Relationship="Self.FK__Food__F_Cities__3B75D760" FromRole="cities" ToRole="Food" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK__Language__L_Citi__31EC6D26" FromRole="cities" ToRole="Language" />
+          <NavigationProperty Name="Populations" Relationship="Self.FK__Populatio__P_Cit__1DE57479" FromRole="cities" ToRole="Population" />
+          <NavigationProperty Name="Tourism" Relationship="Self.FK__Tourism__Tourism__29572725" FromRole="cities" ToRole="Tourism" />
+          <NavigationProperty Name="Transports" Relationship="Self.FK__Transport__T_Cit__239E4DCF" FromRole="cities" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="Cost_Of_Living">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Public_Transport" Type="Int64" />
+          <Property Name="Food" Type="Int64" />
+          <Property Name="Rent_Allowances" Type="Int64" />
+          <Property Name="C_Cities" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Cost_Of_L__C_Cit__1920BF5C" FromRole="Cost_Of_Living" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sortname" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phonecode" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="E_ID" />
+          </Key>
+          <Property Name="E_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Date" Type="DateTime" Precision="0" />
+          <Property Name="E_Categorytype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_Cities" Type="Int32" />
+          <Property Name="E_user" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Events__E_Cities__37A5467C" FromRole="Events" ToRole="cities" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK__Events__E_user__38996AB5" FromRole="Events" ToRole="User_Details" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="F_ID" />
+          </Key>
+          <Property Name="F_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeaFood" Type="Boolean" />
+          <Property Name="South_Indian_Food" Type="Boolean" />
+          <Property Name="North_Indian_Food" Type="Boolean" />
+          <Property Name="Multicuisine" Type="Boolean" />
+          <Property Name="F_Cities" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Food__F_Cities__3B75D760" FromRole="Food" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="L_ID" />
+          </Key>
+          <Property Name="L_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="L_Cities" Type="Int32" />
+          <Property Name="L_user" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Language__L_Citi__31EC6D26" FromRole="Language" ToRole="cities" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK__Language__L_user__32E0915F" FromRole="Language" ToRole="User_Details" />
+        </EntityType>
+        <EntityType Name="Population">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Population_value" Type="Int64" />
+          <Property Name="P_Cities" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Populatio__P_Cit__1DE57479" FromRole="Population" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tourism">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="T_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="T_Categorytype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tourism_Cities" Type="Int32" />
+          <Property Name="T_user" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Tourism__Tourism__29572725" FromRole="Tourism" ToRole="cities" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK__Tourism__T_user__2A4B4B5E" FromRole="Tourism" ToRole="User_Details" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Metro_Services" Type="Boolean" />
+          <Property Name="Local_trains" Type="Boolean" />
+          <Property Name="Local_buses" Type="Boolean" />
+          <Property Name="Flights" Type="Boolean" />
+          <Property Name="Cab_Services" Type="Boolean" />
+          <Property Name="T_Cities" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__Transport__T_Cit__239E4DCF" FromRole="Transport" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Phoneno" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="360" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Verified" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subscribe" Type="Boolean" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__E_user__38996AB5" FromRole="User_Details" ToRole="Events" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK__Language__L_user__32E0915F" FromRole="User_Details" ToRole="Language" />
+          <NavigationProperty Name="Tourism" Relationship="Self.FK__Tourism__T_user__2A4B4B5E" FromRole="User_Details" ToRole="Tourism" />
+        </EntityType>
+        <Association Name="FK__Cost_Of_L__C_Cit__1920BF5C">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Cost_Of_Living" Type="Self.Cost_Of_Living" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Cost_Of_Living">
+              <PropertyRef Name="C_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__E_Cities__37A5467C">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="E_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Food__F_Cities__3B75D760">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="F_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Language__L_Citi__31EC6D26">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Language" Type="Self.Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Language">
+              <PropertyRef Name="L_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Populatio__P_Cit__1DE57479">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Population" Type="Self.Population" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Population">
+              <PropertyRef Name="P_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tourism__Tourism__29572725">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Tourism" Type="Self.Tourism" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Tourism">
+              <PropertyRef Name="Tourism_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transport__T_Cit__239E4DCF">
+          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
+          <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Transport">
+              <PropertyRef Name="T_Cities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__E_user__38996AB5">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="E_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Language__L_user__32E0915F">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1" />
+          <End Role="Language" Type="Self.Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Language">
+              <PropertyRef Name="L_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tourism__T_user__2A4B4B5E">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1" />
+          <End Role="Tourism" Type="Self.Tourism" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Tourism">
+              <PropertyRef Name="T_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TwoStates1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.city" />
+          <EntitySet Name="Cost_Of_Living" EntityType="Self.Cost_Of_Living" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Populations" EntityType="Self.Population" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="Tourism" EntityType="Self.Tourism" />
+          <EntitySet Name="Transports" EntityType="Self.Transport" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" />
+          <AssociationSet Name="FK__Cost_Of_L__C_Cit__1920BF5C" Association="Self.FK__Cost_Of_L__C_Cit__1920BF5C">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Cost_Of_Living" EntitySet="Cost_Of_Living" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__E_Cities__37A5467C" Association="Self.FK__Events__E_Cities__37A5467C">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Food__F_Cities__3B75D760" Association="Self.FK__Food__F_Cities__3B75D760">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Language__L_Citi__31EC6D26" Association="Self.FK__Language__L_Citi__31EC6D26">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Language" EntitySet="Languages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Populatio__P_Cit__1DE57479" Association="Self.FK__Populatio__P_Cit__1DE57479">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Population" EntitySet="Populations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tourism__Tourism__29572725" Association="Self.FK__Tourism__Tourism__29572725">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Tourism" EntitySet="Tourism" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transport__T_Cit__239E4DCF" Association="Self.FK__Transport__T_Cit__239E4DCF">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="Transport" EntitySet="Transports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__E_user__38996AB5" Association="Self.FK__Events__E_user__38996AB5">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Language__L_user__32E0915F" Association="Self.FK__Language__L_user__32E0915F">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Language" EntitySet="Languages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tourism__T_user__2A4B4B5E" Association="Self.FK__Tourism__T_user__2A4B4B5E">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Tourism" EntitySet="Tourism" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TwoStates1ModelStoreContainer" CdmEntityContainer="TwoStates1Entities">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="TwoStates1Model.city">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cost_Of_Living">
+            <EntityTypeMapping TypeName="TwoStates1Model.Cost_Of_Living">
+              <MappingFragment StoreEntitySet="Cost_Of_Living">
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="Public_Transport" ColumnName="Public_Transport" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Rent_Allowances" ColumnName="Rent_Allowances" />
+                <ScalarProperty Name="C_Cities" ColumnName="C_Cities" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="TwoStates1Model.country">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="sortname" ColumnName="sortname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phonecode" ColumnName="phonecode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="TwoStates1Model.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="E_ID" ColumnName="E_ID" />
+                <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+                <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
+                <ScalarProperty Name="E_Categorytype" ColumnName="E_Categorytype" />
+                <ScalarProperty Name="E_Cities" ColumnName="E_Cities" />
+                <ScalarProperty Name="E_user" ColumnName="E_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="TwoStates1Model.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="F_ID" ColumnName="F_ID" />
+                <ScalarProperty Name="SeaFood" ColumnName="SeaFood" />
+                <ScalarProperty Name="South_Indian_Food" ColumnName="South_Indian_Food" />
+                <ScalarProperty Name="North_Indian_Food" ColumnName="North_Indian_Food" />
+                <ScalarProperty Name="Multicuisine" ColumnName="Multicuisine" />
+                <ScalarProperty Name="F_Cities" ColumnName="F_Cities" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="TwoStates1Model.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="L_ID" ColumnName="L_ID" />
+                <ScalarProperty Name="Language_Name" ColumnName="Language_Name" />
+                <ScalarProperty Name="L_Cities" ColumnName="L_Cities" />
+                <ScalarProperty Name="L_user" ColumnName="L_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Populations">
+            <EntityTypeMapping TypeName="TwoStates1Model.Population">
+              <MappingFragment StoreEntitySet="Population">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="Population_value" ColumnName="Population_value" />
+                <ScalarProperty Name="P_Cities" ColumnName="P_Cities" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="TwoStates1Model.state">
+              <MappingFragment StoreEntitySet="states">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tourism">
+            <EntityTypeMapping TypeName="TwoStates1Model.Tourism">
+              <MappingFragment StoreEntitySet="Tourism">
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="T_Name" ColumnName="T_Name" />
+                <ScalarProperty Name="T_Categorytype" ColumnName="T_Categorytype" />
+                <ScalarProperty Name="Tourism_Cities" ColumnName="Tourism_Cities" />
+                <ScalarProperty Name="T_user" ColumnName="T_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transports">
+            <EntityTypeMapping TypeName="TwoStates1Model.Transport">
+              <MappingFragment StoreEntitySet="Transport">
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="Metro_Services" ColumnName="Metro_Services" />
+                <ScalarProperty Name="Local_trains" ColumnName="Local_trains" />
+                <ScalarProperty Name="Local_buses" ColumnName="Local_buses" />
+                <ScalarProperty Name="Flights" ColumnName="Flights" />
+                <ScalarProperty Name="Cab_Services" ColumnName="Cab_Services" />
+                <ScalarProperty Name="T_Cities" ColumnName="T_Cities" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Details">
+            <EntityTypeMapping TypeName="TwoStates1Model.User_Details">
+              <MappingFragment StoreEntitySet="User_Details">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Phoneno" ColumnName="Phoneno" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Email_Verified" ColumnName="Email_Verified" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Subscribe" ColumnName="Subscribe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

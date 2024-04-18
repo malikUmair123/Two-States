@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Session["User"] == "Loggedin")
+{
+    @Html.AntiForgeryToken()
+
+
+    <li>
+        @Html.ActionLink("Hello " + Session["Userid"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+    </li>
+    <li class="smooth-menu"><a href="#" onclick="location.href='@Url.Action("Logout", "TwoStates")'">Log out</a></li>
+
+
+}
+else
+{
+
+    <li class="smooth-menu"><a href="#" onclick="location.href='@Url.Action("Registration", "TwoStates")'">Sign up</a></li>
+    <li class="smooth-menu"><a href="#" onclick="location.href='@Url.Action("Login", "TwoStates")'">Sign in</a></li>
+}
